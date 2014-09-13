@@ -167,6 +167,7 @@ class FloatRatingView: UIView {
                 imageView.hidden = false
             }
             else {
+                imageView.layer.mask = nil;
                 imageView.hidden = true
             }
         }
