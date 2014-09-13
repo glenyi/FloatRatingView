@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F16B709A-E494-40F5-821A-9DFC11424463</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Rating Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8211DB8A25B93C5A27A19A5521E6302076AD013D</key>
+		<string>github.com:strekfus/FloatRatingView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Rating Demo/Rating Demo.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8211DB8A25B93C5A27A19A5521E6302076AD013D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:strekfus/FloatRatingView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8211DB8A25B93C5A27A19A5521E6302076AD013D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8211DB8A25B93C5A27A19A5521E6302076AD013D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FloatRatingView</string>
+		</dict>
+	</array>
+</dict>
+</plist>

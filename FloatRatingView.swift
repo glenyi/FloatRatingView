@@ -119,12 +119,12 @@ class FloatRatingView: UIView {
     }
     
     /**
-    Sets whether or not the rating view is editable.
+    Sets whether or not the rating view can be changed by panning.
     */
     var editable: Bool = true
     
     /**
-    Ratings change by 0.5. Overrides floatRatings property.
+    Ratings change by 0.5. Takes priority over floatRatings property.
     */
     var halfRatings: Bool = false
     
