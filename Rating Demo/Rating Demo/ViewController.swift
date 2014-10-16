@@ -17,7 +17,9 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        /** Note: With the exception of contentMode, all of these
+            properties can be set directly in Interface builder **/
         
         // Required float rating view params
         self.floatRatingView.emptyImage = UIImage(named: "StarEmpty")
