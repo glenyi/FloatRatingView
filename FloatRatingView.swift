@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FloatRatingViewDelegate {
+@objc public protocol FloatRatingViewDelegate {
     /**
     Returns the rating value when touch events end
     */
@@ -23,11 +23,12 @@ protocol FloatRatingViewDelegate {
 /**
 A simple rating view that can set whole, half or floating point ratings.
 */
-class FloatRatingView: UIView {
+@IBDesignable
+public class FloatRatingView: UIView {
     
     // MARK: Float Rating View properties
     
-    var delegate: FloatRatingViewDelegate?
+    public var delegate: FloatRatingViewDelegate?
     
     /**
     Array of empty image views
@@ -42,7 +43,7 @@ class FloatRatingView: UIView {
     /**
     Sets the empty image (e.g. a star outline)
     */
-    var emptyImage: UIImage? {
+    @IBInspectable public var emptyImage: UIImage? {
         didSet {
             // Update empty image views
             for imageView in self.emptyImageViews {
@@ -56,7 +57,7 @@ class FloatRatingView: UIView {
     Sets the full image that is overlayed on top of the empty image.
     Should be same size and shape as the empty image.
     */
-    var fullImage: UIImage? {
+    @IBInspectable public var fullImage: UIImage? {
         didSet {
             // Update full image views
             for imageView in self.fullImageViews {
@@ -74,7 +75,7 @@ class FloatRatingView: UIView {
     /**
     Minimum rating.
     */
-    var minRating: Int  = 0 {
+    @IBInspectable public var minRating: Int  = 0 {
         didSet {
             // Update current rating if needed
             if self.rating < Float(minRating) {
@@ -87,7 +88,7 @@ class FloatRatingView: UIView {
     /**
     Max rating value.
     */
-    var maxRating: Int = 5 {
+    @IBInspectable public var maxRating: Int = 5 {
         didSet {
             let needsRefresh = maxRating != oldValue
             
@@ -105,12 +106,12 @@ class FloatRatingView: UIView {
     /**
     Minimum image size.
     */
-    var minImageSize: CGSize = CGSize(width: 5.0, height: 5.0)
+    @IBInspectable public var minImageSize: CGSize = CGSize(width: 5.0, height: 5.0)
     
     /**
     Set the current rating.
     */
-    var rating: Float = 0 {
+    @IBInspectable public var rating: Float = 0 {
         didSet {
             if rating != oldValue {
                 self.refresh()
@@ -121,28 +122,28 @@ class FloatRatingView: UIView {
     /**
     Sets whether or not the rating view can be changed by panning.
     */
-    var editable: Bool = true
+    @IBInspectable public var editable: Bool = true
     
     /**
     Ratings change by 0.5. Takes priority over floatRatings property.
     */
-    var halfRatings: Bool = false
+    @IBInspectable public var halfRatings: Bool = false
     
     /**
     Ratings change by floating point values.
     */
-    var floatRatings: Bool = false
+    @IBInspectable public var floatRatings: Bool = false
     
     
     // MARK: Initializations
     
-    required override init(frame: CGRect) {
+    required override public init(frame: CGRect) {
         super.init(frame: frame)
         
         self.initImageViews()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.initImageViews()
@@ -195,7 +196,7 @@ class FloatRatingView: UIView {
     }
     
     // Override to calculate ImageView frames
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         if let emptyImage = self.emptyImage {
@@ -293,21 +294,21 @@ class FloatRatingView: UIView {
         }
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         if let touch = touches.anyObject() as? UITouch {
             let touchLocation = touch.locationInView(self)
             self.handleTouchAtLocation(touchLocation)
         }
     }
     
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
+    override public func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         if let touch = touches.anyObject() as? UITouch {
             let touchLocation = touch.locationInView(self)
             self.handleTouchAtLocation(touchLocation)
         }
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override public func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         // Update delegate
         if let delegate = self.delegate {
             delegate.floatRatingView(self, didUpdate: self.rating)
