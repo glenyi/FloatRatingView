@@ -17,7 +17,7 @@ import UIKit
     /**
     Returns the rating value as the user pans
     */
-    func floatRatingView(ratingView: FloatRatingView, isUpdating rating: Float)
+    optional func floatRatingView(ratingView: FloatRatingView, isUpdating rating: Float)
 }
 
 /**
@@ -290,7 +290,7 @@ public class FloatRatingView: UIView {
         
         // Update delegate
         if let delegate = self.delegate {
-            delegate.floatRatingView(self, isUpdating: self.rating)
+            delegate.floatRatingView?(self, isUpdating: self.rating)
         }
     }
     
