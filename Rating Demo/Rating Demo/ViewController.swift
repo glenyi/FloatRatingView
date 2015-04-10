@@ -38,8 +38,8 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
         self.ratingSegmentedControl.selectedSegmentIndex = 1
         
         // Labels init
-        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating)
-        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating)
+        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
+        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,11 +55,11 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
     // MARK: FloatRatingViewDelegate
     
     func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
-        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating)
+        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
     func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
-        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating)
+        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
     
