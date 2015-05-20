@@ -28,7 +28,7 @@ public class FloatRatingView: UIView {
     
     // MARK: Float Rating View properties
     
-    public var delegate: FloatRatingViewDelegate?
+    public weak var delegate: FloatRatingViewDelegate?
     
     /**
     Array of empty image views
