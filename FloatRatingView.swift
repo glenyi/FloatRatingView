@@ -143,7 +143,7 @@ public class FloatRatingView: UIView {
         self.initImageViews()
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.initImageViews()
@@ -294,21 +294,21 @@ public class FloatRatingView: UIView {
         }
     }
     
-    override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        if let touch = touches.first as? UITouch {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first as UITouch? {
             let touchLocation = touch.locationInView(self)
             self.handleTouchAtLocation(touchLocation)
         }
     }
     
-    override public func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        if let touch = touches.first as? UITouch {
+    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first as UITouch? {
             let touchLocation = touch.locationInView(self)
             self.handleTouchAtLocation(touchLocation)
         }
     }
     
-    override public func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // Update delegate
         if let delegate = self.delegate {
             delegate.floatRatingView(self, didUpdate: self.rating)
