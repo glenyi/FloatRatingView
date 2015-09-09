@@ -143,7 +143,7 @@ public class FloatRatingView: UIView {
         self.initImageViews()
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.initImageViews()
@@ -239,7 +239,7 @@ public class FloatRatingView: UIView {
         }
         
         // Add new image views
-        for i in 0..<self.maxRating {
+        for _ in 0..<self.maxRating {
             let emptyImageView = UIImageView()
             emptyImageView.contentMode = self.imageContentMode
             emptyImageView.image = self.emptyImage
@@ -263,7 +263,7 @@ public class FloatRatingView: UIView {
         }
         
         var newRating: Float = 0
-        for i in stride(from: (self.maxRating-1), through: 0, by: -1) {
+        for i in (self.maxRating-1).stride(through: 0, by: -1) {
             let imageView = self.emptyImageViews[i]
             if touchLocation.x > imageView.frame.origin.x {
                 // Find touch point in image view
@@ -294,21 +294,21 @@ public class FloatRatingView: UIView {
         }
     }
     
-    override public func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        if let touch = touches.first as? UITouch {
+    override public func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first {
             let touchLocation = touch.locationInView(self)
             self.handleTouchAtLocation(touchLocation)
         }
     }
     
-    override public func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
-        if let touch = touches.first as? UITouch {
+    override public func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        if let touch = touches.first  {
             let touchLocation = touch.locationInView(self)
             self.handleTouchAtLocation(touchLocation)
         }
     }
     
-    override public func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override public func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         // Update delegate
         if let delegate = self.delegate {
             delegate.floatRatingView(self, didUpdate: self.rating)
