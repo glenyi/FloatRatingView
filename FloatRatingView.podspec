@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
 	spec.name 						= 'FloatRatingView'
-	spec.version 					= '1.0.1'
+	spec.version 					= '1.0.2'
 	spec.summary 					= 'Whole, half or floating point ratings control written in Swift.'
 	spec.homepage 				= 'https://github.com/strekfus/FloatRatingView'
 	spec.license 					= 'MIT'
