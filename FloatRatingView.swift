@@ -8,16 +8,23 @@
 
 import UIKit
 
-@objc public protocol FloatRatingViewDelegate {
+public protocol FloatRatingViewDelegate: class {
     /**
     Returns the rating value when touch events end
     */
-    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float)
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
     
     /**
     Returns the rating value as the user pans
     */
-    @objc optional func floatRatingView(ratingView: FloatRatingView, isUpdating rating: Float)
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float)
+}
+
+// Delegate optionals
+extension FloatRatingViewDelegate {
+    
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float) {
+    }
 }
 
 /**
@@ -290,7 +297,7 @@ public class FloatRatingView: UIView {
         
         // Update delegate
         if let delegate = self.delegate {
-            delegate.floatRatingView?(ratingView: self, isUpdating: self.rating)
+            delegate.floatRatingView(self, isUpdating: self.rating)
         }
     }
     
@@ -311,7 +318,7 @@ public class FloatRatingView: UIView {
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Update delegate
         if let delegate = self.delegate {
-            delegate.floatRatingView(ratingView: self, didUpdate: self.rating)
+            delegate.floatRatingView(self, didUpdate: self.rating)
         }
     }
     
