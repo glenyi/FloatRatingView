@@ -26,7 +26,7 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
         self.floatRatingView.fullImage = UIImage(named: "StarFull")
         // Optional params
         self.floatRatingView.delegate = self
-        self.floatRatingView.contentMode = UIViewContentMode.ScaleAspectFit
+        self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
         self.floatRatingView.maxRating = 5
         self.floatRatingView.minRating = 1
         self.floatRatingView.rating = 2.5
@@ -47,18 +47,18 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func ratingTypeChanged(sender: UISegmentedControl) {
+    @IBAction func ratingTypeChanged(_ sender: UISegmentedControl) {
         self.floatRatingView.halfRatings = sender.selectedSegmentIndex==1
         self.floatRatingView.floatRatings = sender.selectedSegmentIndex==2
     }
 
     // MARK: FloatRatingViewDelegate
     
-    func floatRatingView(ratingView: FloatRatingView, isUpdating rating:Float) {
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
         self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
-    func floatRatingView(ratingView: FloatRatingView, didUpdate rating: Float) {
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
         self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
     }
     
