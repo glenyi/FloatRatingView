@@ -28,7 +28,19 @@ open class FloatRatingView: UIView {
     
     // MARK: Properties
     
-    open weak var delegate: FloatRatingViewDelegate?
+    @IBOutlet open weak var delegate: FloatRatingViewDelegate?
+    
+    /// Works around the fact that IB cannot connect to protocol outlets in Swift files (Xcode Version 8.0 (8A218a)).
+    ///
+    /// http://bit.ly/2eLvVoq discusses this behavior and proposes this workaround.
+    @IBOutlet open weak var ibDelegate: AnyObject? {
+        get {
+            return delegate
+        }
+        set {
+            delegate = newValue as? FloatRatingViewDelegate
+        }
+    }
     
     /**
     Array of empty image views

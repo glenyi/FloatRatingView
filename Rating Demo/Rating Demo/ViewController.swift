@@ -25,7 +25,6 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
         self.floatRatingView.emptyImage = UIImage(named: "StarEmpty")
         self.floatRatingView.fullImage = UIImage(named: "StarFull")
         // Optional params
-        self.floatRatingView.delegate = self
         self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
         self.floatRatingView.maxRating = 5
         self.floatRatingView.minRating = 1
