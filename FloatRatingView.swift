@@ -41,40 +41,68 @@ open class FloatRatingView: UIView {
     fileprivate var fullImageViews: [UIImageView] = []
 
     /**
-    Sets the empty image (e.g. a star outline)
-    */
+     Sets the empty image (e.g. a star outline)
+     Tint image based on FloatRatingView tintColor
+     */
     @IBInspectable open var emptyImage: UIImage? {
         didSet {
             // Update empty image views
             for imageView in emptyImageViews {
-                imageView.image = emptyImage
+                imageView.image = emptyImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+                imageView.tintColor = self.tintColor
             }
             refresh()
         }
     }
     
+    @IBInspectable var verticalOrientation: Bool = false {
+        didSet {
+            
+            setNeedsLayout()
+            refresh()
+        }
+    }
+    
     /**
-    Sets the full image that is overlayed on top of the empty image.
-    Should be same size and shape as the empty image.
-    */
+     Sets the full image that is overlayed on top of the empty image.
+     Should be same size and shape as the empty image.
+     Tint image based on FloatRatingView tintColor
+     */
     @IBInspectable open var fullImage: UIImage? {
         didSet {
             // Update full image views
             for imageView in fullImageViews {
-                imageView.image = fullImage
+                imageView.image = fullImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+                imageView.tintColor = self.tintColor
             }
             refresh()
         }
     }
     
-    /**
-    Sets the empty and full image view content mode.
-    */
-    var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
+    /** Override UIView tintColorDidChange to enable tinting of
+     subviews when set for parent in code
+     */
+    override open func tintColorDidChange() {
+        super.tintColorDidChange()
+        
+        //textColor = tintColor
+        for imageView in fullImageViews {
+            imageView.tintColor = self.tintColor
+        }
+        for imageView in emptyImageViews {
+            imageView.tintColor = self.tintColor
+        }
+    }
     
     /**
-    Minimum rating.
-    */
+     Sets the empty and full image view content mode and image rendering mode
+     */
+    var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
+    //var imageRenderingMode: UIImageRenderingMode = UIImageRenderingMode.alwaysTemplate
+    
+    /**
+     Minimum rating.
+     */
     @IBInspectable open var minRating: Int  = 0 {
         didSet {
             // Update current rating if needed
@@ -86,8 +114,8 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Max rating value.
-    */
+     Max rating value.
+     */
     @IBInspectable open var maxRating: Int = 5 {
         didSet {
             if maxRating != oldValue {
@@ -102,13 +130,13 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Minimum image size.
-    */
+     Minimum image size.
+     */
     @IBInspectable open var minImageSize: CGSize = CGSize(width: 5.0, height: 5.0)
     
     /**
-    Set the current rating.
-    */
+     Set the current rating.
+     */
     @IBInspectable open var rating: Float = 0 {
         didSet {
             if rating != oldValue {
@@ -118,18 +146,18 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Sets whether or not the rating view can be changed by panning.
-    */
+     Sets whether or not the rating view can be changed by panning.
+     */
     @IBInspectable open var editable: Bool = true
     
     /**
-    Ratings change by 0.5. Takes priority over floatRatings property.
-    */
+     Ratings change by 0.5. Takes priority over floatRatings property.
+     */
     @IBInspectable open var halfRatings: Bool = false
     
     /**
-    Ratings change by floating point values.
-    */
+     Ratings change by floating point values.
+     */
     @IBInspectable open var floatRatings: Bool = false
     
     
@@ -148,23 +176,25 @@ open class FloatRatingView: UIView {
     }
     
     // MARK: Helper methods
-
+    
     fileprivate func initImageViews() {
         guard emptyImageViews.isEmpty && fullImageViews.isEmpty else {
             return
         }
-
+        
         // Add new image views
         for _ in 0..<maxRating {
             let emptyImageView = UIImageView()
             emptyImageView.contentMode = imageContentMode
-            emptyImageView.image = emptyImage
+            emptyImageView.image = emptyImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            emptyImageView.tintColor = self.tintColor
             emptyImageViews.append(emptyImageView)
             addSubview(emptyImageView)
-
+            
             let fullImageView = UIImageView()
             fullImageView.contentMode = imageContentMode
-            fullImageView.image = fullImage
+            fullImageView.image = fullImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            fullImageView.tintColor = self.tintColor
             fullImageViews.append(fullImageView)
             addSubview(fullImageView)
         }
@@ -183,23 +213,50 @@ open class FloatRatingView: UIView {
     }
 
     // Refresh hides or shows full images
+    // Vary maskLayer frame based on verticalOrientation setting
     fileprivate func refresh() {
-        for i in 0..<fullImageViews.count {
-            let imageView = fullImageViews[i]
-
-            if rating >= Float(i+1) {
-                imageView.layer.mask = nil
-                imageView.isHidden = false
-            } else if rating > Float(i) && rating < Float(i+1) {
-                // Set mask layer for full image
-                let maskLayer = CALayer()
-                maskLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(rating-Float(i))*imageView.frame.size.width, height: imageView.frame.size.height)
-                maskLayer.backgroundColor = UIColor.black.cgColor
-                imageView.layer.mask = maskLayer
-                imageView.isHidden = false
-            } else {
-                imageView.layer.mask = nil;
-                imageView.isHidden = true
+        
+        if (verticalOrientation == false) {
+            //horizontal orientation
+            for i in 0..<fullImageViews.count {
+                let imageView = fullImageViews[i]
+                
+                if rating >= Float(i+1) {
+                    imageView.layer.mask = nil
+                    imageView.isHidden = false
+                } else if rating > Float(i) && rating < Float(i+1) {
+                    // Set mask layer for full image
+                    let maskLayer = CALayer()
+                    maskLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(rating-Float(i))*imageView.frame.size.width, height: imageView.frame.size.height)
+                    maskLayer.backgroundColor = UIColor.black.cgColor
+                    imageView.layer.mask = maskLayer
+                    imageView.isHidden = false
+                } else {
+                    imageView.layer.mask = nil;
+                    imageView.isHidden = true
+                }
+            }
+        }
+        else {
+            //vertical orientation
+            for i in 0..<fullImageViews.count {
+                let imageView = fullImageViews[i]
+                
+                if rating >= Float(i+1) {
+                    imageView.layer.mask = nil
+                    imageView.isHidden = false
+                } else if rating > Float(i) && rating < Float(i+1) {
+                    // Set mask layer for full image
+                    let maskLayer = CALayer()
+                    maskLayer.frame = CGRect(x:0 , y: imageView.frame.size.height - CGFloat(rating-Float(i))*imageView.frame.size.height, width: imageView.frame.size.width, height: CGFloat(rating-Float(i)) * imageView.frame.size.height)
+                    
+                    maskLayer.backgroundColor = UIColor.black.cgColor
+                    imageView.layer.mask = maskLayer
+                    imageView.isHidden = false
+                } else {
+                    imageView.layer.mask = nil;
+                    imageView.isHidden = true
+                }
             }
         }
     }
@@ -221,27 +278,35 @@ open class FloatRatingView: UIView {
             return CGSize(width: size.width, height: height)
         }
     }
-
+    
     // Calculates new rating based on touch location in view
+    // Vary calculation based on verticalOrientation setting
     fileprivate func updateLocation(_ touch: UITouch) {
         guard editable else {
             return
         }
-
+        
         let touchLocation = touch.location(in: self)
         var newRating: Float = 0
         for i in stride(from: (maxRating-1), through: 0, by: -1) {
             let imageView = emptyImageViews[i]
+            
             guard touchLocation.x > imageView.frame.origin.x else {
                 continue
             }
-
+            
             // Find touch point in image view
             let newLocation = imageView.convert(touchLocation, from: self)
-
+            
             // Find decimal value for float or half rating
             if imageView.point(inside: newLocation, with: nil) && (floatRatings || halfRatings) {
-                let decimalNum = Float(newLocation.x / imageView.frame.size.width)
+                let decimalNum: Float
+                if !(verticalOrientation) {
+                    decimalNum = Float(newLocation.x / imageView.frame.size.width)
+                }
+                else {
+                    decimalNum = 1.0 - Float(newLocation.y / imageView.frame.size.height)
+                }
                 newRating = Float(i) + decimalNum
                 if halfRatings {
                     newRating = Float(i) + (decimalNum > 0.75 ? 1 : (decimalNum > 0.25 ? 0.5 : 0))
@@ -252,33 +317,38 @@ open class FloatRatingView: UIView {
             }
             break
         }
-
+        
         // Check min rating
         rating = newRating < Float(minRating) ? Float(minRating) : newRating
-
+        
         // Update delegate
         delegate?.floatRatingView?(self, isUpdating: rating)
     }
-
+    
     // MARK: UIView
     
     // Override to calculate ImageView frames
     override open func layoutSubviews() {
         super.layoutSubviews()
-
+        
         guard let emptyImage = emptyImage else {
             return
         }
-
+        
         let desiredImageWidth = frame.size.width / CGFloat(emptyImageViews.count)
-        let maxImageWidth = max(minImageSize.width, desiredImageWidth)
-        let maxImageHeight = max(minImageSize.height, frame.size.height)
+        
+        let maxImageWidth: CGFloat, maxImageHeight: CGFloat
+        
+        maxImageWidth = max(minImageSize.width, desiredImageWidth)
+        maxImageHeight = max(minImageSize.height, frame.size.height)
+        
         let imageViewSize = sizeForImage(emptyImage, inSize: CGSize(width: maxImageWidth, height: maxImageHeight))
         let imageXOffset = (frame.size.width - (imageViewSize.width * CGFloat(emptyImageViews.count))) /
-                            CGFloat((emptyImageViews.count - 1))
+            CGFloat((emptyImageViews.count - 1))
         
         for i in 0..<maxRating {
-            let imageFrame = CGRect(x: i == 0 ? 0 : CGFloat(i)*(imageXOffset+imageViewSize.width), y: 0, width: imageViewSize.width, height: imageViewSize.height)
+            let imageFrame: CGRect
+            imageFrame = CGRect(x: i == 0 ? 0 : CGFloat(i)*(imageXOffset+imageViewSize.width), y: 0, width: imageViewSize.width, height: imageViewSize.height)
             
             var imageView = emptyImageViews[i]
             imageView.frame = imageFrame
@@ -291,7 +361,7 @@ open class FloatRatingView: UIView {
     }
     
     // MARK: Touch events
-
+    
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
