@@ -33,6 +33,8 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
         self.floatRatingView.editable = true
         self.floatRatingView.halfRatings = true
         self.floatRatingView.floatRatings = false
+        self.floatRatingView.tintColor = UIColor.red
+        self.floatRatingView.verticalOrientation = false
         
         // Segmented control init
         self.ratingSegmentedControl.selectedSegmentIndex = 1
@@ -50,8 +52,25 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
     @IBAction func ratingTypeChanged(_ sender: UISegmentedControl) {
         self.floatRatingView.halfRatings = sender.selectedSegmentIndex==1
         self.floatRatingView.floatRatings = sender.selectedSegmentIndex==2
+        
+        //disable slider if Whole Rating selected, enable if not
+        if sender.selectedSegmentIndex==0 {
+            switchOrientation.isEnabled = false
+        }
+        else {
+            switchOrientation.isEnabled = true
+        }
     }
-
+    
+    @IBAction func orientationChanged(_ sender: UISwitch) {
+        self.floatRatingView.verticalOrientation = !(self.floatRatingView.verticalOrientation)
+    }
+    
+    
+    @IBOutlet weak var switchOrientation: UISwitch!
+    
+    
+    
     // MARK: FloatRatingViewDelegate
     
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
