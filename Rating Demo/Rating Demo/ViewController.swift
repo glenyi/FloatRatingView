@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, FloatRatingViewDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet var ratingSegmentedControl: UISegmentedControl!
     @IBOutlet var floatRatingView: FloatRatingView!
@@ -17,51 +17,49 @@ class ViewController: UIViewController, FloatRatingViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /** Note: With the exception of contentMode, all of these
-            properties can be set directly in Interface builder **/
-        
-        // Required float rating view params
-        self.floatRatingView.emptyImage = UIImage(named: "StarEmpty")
-        self.floatRatingView.fullImage = UIImage(named: "StarFull")
-        // Optional params
-        self.floatRatingView.delegate = self
-        self.floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
-        self.floatRatingView.maxRating = 5
-        self.floatRatingView.minRating = 1
-        self.floatRatingView.rating = 2.5
-        self.floatRatingView.editable = true
-        self.floatRatingView.halfRatings = true
-        self.floatRatingView.floatRatings = false
+
+        // Reset float rating view's background color
+        floatRatingView.backgroundColor = UIColor.clear
+
+        /** Note: With the exception of contentMode, type and delegate,
+         all properties can be set directly in Interface Builder **/
+        floatRatingView.delegate = self
+        floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
+        floatRatingView.type = .halfRatings
         
         // Segmented control init
-        self.ratingSegmentedControl.selectedSegmentIndex = 1
+        ratingSegmentedControl.selectedSegmentIndex = 1
         
         // Labels init
-        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
-        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        liveLabel.text = String(format: "%.2f", self.floatRatingView.rating)
+        updatedLabel.text = String(format: "%.2f", self.floatRatingView.rating)
     }
 
     @IBAction func ratingTypeChanged(_ sender: UISegmentedControl) {
-        self.floatRatingView.halfRatings = sender.selectedSegmentIndex==1
-        self.floatRatingView.floatRatings = sender.selectedSegmentIndex==2
+        switch sender.selectedSegmentIndex {
+        case 0:
+            floatRatingView.type = .wholeRatings
+        case 1:
+            floatRatingView.type = .halfRatings
+        case 2:
+            floatRatingView.type = .floatRatings
+        default:
+            floatRatingView.type = .wholeRatings
+        }
     }
+}
+
+extension ViewController: FloatRatingViewDelegate {
 
     // MARK: FloatRatingViewDelegate
     
-    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating:Float) {
-        self.liveLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
+    func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Double) {
+        liveLabel.text = String(format: "%.2f", self.floatRatingView.rating)
     }
     
-    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float) {
-        self.updatedLabel.text = NSString(format: "%.2f", self.floatRatingView.rating) as String
+    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Double) {
+        updatedLabel.text = String(format: "%.2f", self.floatRatingView.rating)
     }
-    
     
 }
 

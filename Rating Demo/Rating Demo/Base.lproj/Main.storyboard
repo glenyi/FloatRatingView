@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,18 +20,18 @@
                         <viewControllerLayoutGuide type="bottom" id="oUN-9S-Ly7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Float Rating View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIn-fz-guV">
-                                <rect key="frame" x="215" y="52.5" width="170" height="26.5"/>
+                                <rect key="frame" x="105.33333333333334" y="95.666666666666671" width="164.66666666666666" height="26.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBb-xE-SV5" customClass="FloatRatingView" customModule="Rating_Demo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="178" width="560" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="248.66666666666669" width="343" height="44.000000000000057"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="XSf-yx-MWT"/>
                                 </constraints>
@@ -41,36 +45,37 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                                        <real key="value" value="3"/>
+                                        <real key="value" value="2.5"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Live Rating:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nH0-To-tP5">
-                                <rect key="frame" x="75.5" y="252" width="89" height="20.5"/>
+                                <rect key="frame" x="71.666666666666657" y="329.66666666666669" width="88.999999999999972" height="20.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Updated Rating:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fmp-IB-18A">
-                                <rect key="frame" x="40" y="280.5" width="124.5" height="20.5"/>
+                                <rect key="frame" x="36" y="358.33333333333331" width="124.66666666666666" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfK-LJ-vUZ">
-                                <rect key="frame" x="172.5" y="252" width="24" height="20.5"/>
+                                <rect key="frame" x="168.66666666666666" y="329.66666666666669" width="24" height="20.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9T-8V-Y0b">
-                                <rect key="frame" x="172.5" y="280.5" width="24" height="20.5"/>
+                                <rect key="frame" x="168.66666666666666" y="358.33333333333331" width="24" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WOu-Kg-Xd8">
-                                <rect key="frame" x="20" y="127" width="560" height="29"/>
+                                <rect key="frame" x="16" y="191.33333333333334" width="343" height="29"/>
                                 <segments>
                                     <segment title="Whole"/>
                                     <segment title="Half"/>
@@ -81,12 +86,14 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WOu-Kg-Xd8" firstAttribute="leading" secondItem="gBb-xE-SV5" secondAttribute="leading" id="17j-zf-aJf"/>
                             <constraint firstAttribute="centerX" secondItem="MIn-fz-guV" secondAttribute="centerX" id="2sz-VJ-Sum"/>
+                            <constraint firstItem="nH0-To-tP5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="7kh-py-cp6"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="o9T-8V-Y0b" secondAttribute="trailing" constant="10" id="FXz-Xl-UWl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gBb-xE-SV5" secondAttribute="trailing" id="HqI-pe-Woa"/>
-                            <constraint firstAttribute="width" secondItem="gBb-xE-SV5" secondAttribute="width" id="Ofu-uz-mob"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="lfK-LJ-vUZ" secondAttribute="trailing" constant="10" id="Jw0-7o-B27"/>
                             <constraint firstItem="nH0-To-tP5" firstAttribute="centerY" secondItem="lfK-LJ-vUZ" secondAttribute="centerY" id="Qce-1N-OoR"/>
                             <constraint firstItem="nH0-To-tP5" firstAttribute="top" secondItem="gBb-xE-SV5" secondAttribute="bottom" multiplier="1.1" constant="8" symbolic="YES" id="WBi-0z-7Xt"/>
                             <constraint firstItem="Fmp-IB-18A" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="20" id="XJ9-fs-ydL"/>
@@ -101,14 +108,8 @@
                             <constraint firstItem="o9T-8V-Y0b" firstAttribute="centerY" secondItem="Fmp-IB-18A" secondAttribute="centerY" id="yqm-D4-tbp"/>
                             <constraint firstItem="gBb-xE-SV5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="zCi-Ir-4SF"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="Ofu-uz-mob"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="floatRatingView" destination="gBb-xE-SV5" id="0eS-2F-i06"/>
                         <outlet property="liveLabel" destination="lfK-LJ-vUZ" id="wKr-PP-3KJ"/>
