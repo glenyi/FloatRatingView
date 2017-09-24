@@ -23,7 +23,7 @@ open class FloatRatingView: UIView {
     
     // MARK: Properties
     
-    weak var delegate: FloatRatingViewDelegate?
+    open weak var delegate: FloatRatingViewDelegate?
 
     /// Array of empty image views
     private var emptyImageViews: [UIImageView] = []
