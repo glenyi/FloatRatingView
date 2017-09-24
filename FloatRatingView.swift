@@ -10,18 +10,18 @@ import UIKit
 
 @objc public protocol FloatRatingViewDelegate {
     /**
-    Returns the rating value when touch events end
+     Returns the rating value when touch events end
     */
-    func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
+    @objc optional func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
     
     /**
-    Returns the rating value as the user pans
+     Returns the rating value as the user pans
     */
     @objc optional func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float)
 }
 
 /**
-A simple rating view that can set whole, half or floating point ratings.
+ A simple rating view that can set whole, half or floating point ratings.
 */
 @IBDesignable
 open class FloatRatingView: UIView {
@@ -31,17 +31,17 @@ open class FloatRatingView: UIView {
     open weak var delegate: FloatRatingViewDelegate?
     
     /**
-    Array of empty image views
+     Array of empty image views
     */
     fileprivate var emptyImageViews: [UIImageView] = []
     
     /**
-    Array of full image views
+     Array of full image views
     */
     fileprivate var fullImageViews: [UIImageView] = []
 
     /**
-    Sets the empty image (e.g. a star outline)
+     Sets the empty image (e.g. a star outline)
     */
     @IBInspectable open var emptyImage: UIImage? {
         didSet {
@@ -54,8 +54,8 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Sets the full image that is overlayed on top of the empty image.
-    Should be same size and shape as the empty image.
+     Sets the full image that is overlayed on top of the empty image.
+     Should be same size and shape as the empty image.
     */
     @IBInspectable open var fullImage: UIImage? {
         didSet {
@@ -68,12 +68,12 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Sets the empty and full image view content mode.
+     Sets the empty and full image view content mode.
     */
-    var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
+    open var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
     
     /**
-    Minimum rating.
+     Minimum rating.
     */
     @IBInspectable open var minRating: Int  = 0 {
         didSet {
@@ -86,7 +86,7 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Max rating value.
+     Max rating value.
     */
     @IBInspectable open var maxRating: Int = 5 {
         didSet {
@@ -102,12 +102,12 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Minimum image size.
+     Minimum image size.
     */
     @IBInspectable open var minImageSize: CGSize = CGSize(width: 5.0, height: 5.0)
     
     /**
-    Set the current rating.
+     Set the current rating.
     */
     @IBInspectable open var rating: Float = 0 {
         didSet {
@@ -118,17 +118,17 @@ open class FloatRatingView: UIView {
     }
     
     /**
-    Sets whether or not the rating view can be changed by panning.
+     Sets whether or not the rating view can be changed by panning.
     */
     @IBInspectable open var editable: Bool = true
     
     /**
-    Ratings change by 0.5. Takes priority over floatRatings property.
+     Ratings change by 0.5. Takes priority over floatRatings property.
     */
     @IBInspectable open var halfRatings: Bool = false
     
     /**
-    Ratings change by floating point values.
+     Ratings change by floating point values.
     */
     @IBInspectable open var floatRatings: Bool = false
     
@@ -149,7 +149,7 @@ open class FloatRatingView: UIView {
     
     // MARK: Helper methods
 
-    fileprivate func initImageViews() {
+    private func initImageViews() {
         guard emptyImageViews.isEmpty && fullImageViews.isEmpty else {
             return
         }
@@ -170,7 +170,7 @@ open class FloatRatingView: UIView {
         }
     }
 
-    fileprivate func removeImageViews() {
+    private func removeImageViews() {
         // Remove old image views
         for i in 0..<emptyImageViews.count {
             var imageView = emptyImageViews[i]
@@ -183,7 +183,7 @@ open class FloatRatingView: UIView {
     }
 
     // Refresh hides or shows full images
-    fileprivate func refresh() {
+    private func refresh() {
         for i in 0..<fullImageViews.count {
             let imageView = fullImageViews[i]
 
@@ -205,7 +205,7 @@ open class FloatRatingView: UIView {
     }
     
     // Calculates the ideal ImageView size in a given CGSize
-    fileprivate func sizeForImage(_ image: UIImage, inSize size: CGSize) -> CGSize {
+    private func sizeForImage(_ image: UIImage, inSize size: CGSize) -> CGSize {
         let imageRatio = image.size.width / image.size.height
         let viewRatio = size.width / size.height
         
@@ -223,7 +223,7 @@ open class FloatRatingView: UIView {
     }
 
     // Calculates new rating based on touch location in view
-    fileprivate func updateLocation(_ touch: UITouch) {
+    private func updateLocation(_ touch: UITouch) {
         guard editable else {
             return
         }
@@ -260,6 +260,7 @@ open class FloatRatingView: UIView {
         delegate?.floatRatingView?(self, isUpdating: rating)
     }
 
+
     // MARK: UIView
     
     // Override to calculate ImageView frames
@@ -289,7 +290,8 @@ open class FloatRatingView: UIView {
         
         refresh()
     }
-    
+
+
     // MARK: Touch events
 
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -298,7 +300,7 @@ open class FloatRatingView: UIView {
         }
         updateLocation(touch)
     }
-    
+
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else {
             return
@@ -308,11 +310,11 @@ open class FloatRatingView: UIView {
     
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Update delegate
-        delegate?.floatRatingView(self, didUpdate: rating)
+        delegate?.floatRatingView?(self, didUpdate: rating)
     }
     
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Update delegate
-        delegate?.floatRatingView(self, didUpdate: rating)
+        delegate?.floatRatingView?(self, didUpdate: rating)
     }
 }
