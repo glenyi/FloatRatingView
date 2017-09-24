@@ -9,40 +9,29 @@
 import UIKit
 
 @objc public protocol FloatRatingViewDelegate {
-    /**
-     Returns the rating value when touch events end
-    */
-    @objc optional func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Float)
-    
-    /**
-     Returns the rating value as the user pans
-    */
-    @objc optional func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Float)
+    /// Returns the rating value when touch events end
+    @objc optional func floatRatingView(_ ratingView: FloatRatingView, didUpdate rating: Double)
+
+    /// Returns the rating value as the user pans
+    @objc optional func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Double)
 }
 
-/**
- A simple rating view that can set whole, half or floating point ratings.
-*/
+/// A simple rating view that can set whole, half or floating point ratings.
 @IBDesignable
+@objcMembers
 open class FloatRatingView: UIView {
     
     // MARK: Properties
     
-    open weak var delegate: FloatRatingViewDelegate?
-    
-    /**
-     Array of empty image views
-    */
-    fileprivate var emptyImageViews: [UIImageView] = []
-    
-    /**
-     Array of full image views
-    */
-    fileprivate var fullImageViews: [UIImageView] = []
+    weak var delegate: FloatRatingViewDelegate?
 
-    /**
-     Sets the empty image (e.g. a star outline)
-    */
+    /// Array of empty image views
+    private var emptyImageViews: [UIImageView] = []
+
+    /// Array of full image views
+    private var fullImageViews: [UIImageView] = []
+
+    /// Sets the empty image (e.g. a star outline)
     @IBInspectable open var emptyImage: UIImage? {
         didSet {
             // Update empty image views
@@ -52,11 +41,9 @@ open class FloatRatingView: UIView {
             refresh()
         }
     }
-    
-    /**
-     Sets the full image that is overlayed on top of the empty image.
-     Should be same size and shape as the empty image.
-    */
+
+    /// Sets the full image that is overlayed on top of the empty image.
+    /// Should be same size and shape as the empty image.
     @IBInspectable open var fullImage: UIImage? {
         didSet {
             // Update full image views
@@ -66,28 +53,22 @@ open class FloatRatingView: UIView {
             refresh()
         }
     }
-    
-    /**
-     Sets the empty and full image view content mode.
-    */
+
+    /// Sets the empty and full image view content mode.
     open var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
-    
-    /**
-     Minimum rating.
-    */
+
+    /// Minimum rating.
     @IBInspectable open var minRating: Int  = 0 {
         didSet {
             // Update current rating if needed
-            if rating < Float(minRating) {
-                rating = Float(minRating)
+            if rating < Double(minRating) {
+                rating = Double(minRating)
                 refresh()
             }
         }
     }
-    
-    /**
-     Max rating value.
-    */
+
+    /// Max rating value.
     @IBInspectable open var maxRating: Int = 5 {
         didSet {
             if maxRating != oldValue {
@@ -100,38 +81,40 @@ open class FloatRatingView: UIView {
             }
         }
     }
-    
-    /**
-     Minimum image size.
-    */
+
+    /// Minimum image size.
     @IBInspectable open var minImageSize: CGSize = CGSize(width: 5.0, height: 5.0)
-    
-    /**
-     Set the current rating.
-    */
-    @IBInspectable open var rating: Float = 0 {
+
+    /// Set the current rating.
+    @IBInspectable open var rating: Double = 0 {
         didSet {
             if rating != oldValue {
                 refresh()
             }
         }
     }
-    
-    /**
-     Sets whether or not the rating view can be changed by panning.
-    */
+
+    /// Sets whether or not the rating view can be changed by panning.
     @IBInspectable open var editable: Bool = true
-    
-    /**
-     Ratings change by 0.5. Takes priority over floatRatings property.
-    */
-    @IBInspectable open var halfRatings: Bool = false
-    
-    /**
-     Ratings change by floating point values.
-    */
-    @IBInspectable open var floatRatings: Bool = false
-    
+
+    // MARK: Type
+
+    @objc public enum FloatRatingViewType: Int {
+        /// Integer rating
+        case wholeRatings
+        /// Double rating in increments of 0.5
+        case halfRatings
+        /// Double rating
+        case floatRatings
+
+        /// Returns true if rating can contain decimal places
+        func supportsFractions() -> Bool {
+            return self == .halfRatings || self == .floatRatings
+        }
+    }
+
+    /// Float rating view type
+    @IBInspectable open var type: FloatRatingViewType = .wholeRatings
     
     // MARK: Initializations
     
@@ -187,13 +170,13 @@ open class FloatRatingView: UIView {
         for i in 0..<fullImageViews.count {
             let imageView = fullImageViews[i]
 
-            if rating >= Float(i+1) {
+            if rating >= Double(i+1) {
                 imageView.layer.mask = nil
                 imageView.isHidden = false
-            } else if rating > Float(i) && rating < Float(i+1) {
+            } else if rating > Double(i) && rating < Double(i+1) {
                 // Set mask layer for full image
                 let maskLayer = CALayer()
-                maskLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(rating-Float(i))*imageView.frame.size.width, height: imageView.frame.size.height)
+                maskLayer.frame = CGRect(x: 0, y: 0, width: CGFloat(rating-Double(i))*imageView.frame.size.width, height: imageView.frame.size.height)
                 maskLayer.backgroundColor = UIColor.black.cgColor
                 imageView.layer.mask = maskLayer
                 imageView.isHidden = false
@@ -229,7 +212,7 @@ open class FloatRatingView: UIView {
         }
 
         let touchLocation = touch.location(in: self)
-        var newRating: Float = 0
+        var newRating: Double = 0
         for i in stride(from: (maxRating-1), through: 0, by: -1) {
             let imageView = emptyImageViews[i]
             guard touchLocation.x > imageView.frame.origin.x else {
@@ -240,21 +223,21 @@ open class FloatRatingView: UIView {
             let newLocation = imageView.convert(touchLocation, from: self)
 
             // Find decimal value for float or half rating
-            if imageView.point(inside: newLocation, with: nil) && (floatRatings || halfRatings) {
-                let decimalNum = Float(newLocation.x / imageView.frame.size.width)
-                newRating = Float(i) + decimalNum
-                if halfRatings {
-                    newRating = Float(i) + (decimalNum > 0.75 ? 1 : (decimalNum > 0.25 ? 0.5 : 0))
+            if imageView.point(inside: newLocation, with: nil) && (type.supportsFractions()) {
+                let decimalNum = Double(newLocation.x / imageView.frame.size.width)
+                newRating = Double(i) + decimalNum
+                if type == .halfRatings {
+                    newRating = Double(i) + (decimalNum > 0.75 ? 1 : (decimalNum > 0.25 ? 0.5 : 0))
                 }
             } else {
                 // Whole rating
-                newRating = Float(i) + 1.0
+                newRating = Double(i) + 1.0
             }
             break
         }
 
         // Check min rating
-        rating = newRating < Float(minRating) ? Float(minRating) : newRating
+        rating = newRating < Double(minRating) ? Double(minRating) : newRating
 
         // Update delegate
         delegate?.floatRatingView?(self, isUpdating: rating)
