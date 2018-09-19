@@ -11,19 +11,8 @@
 		B275F40919BA5E3600E6F169 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275F40819BA5E3600E6F169 /* ViewController.swift */; };
 		B275F40C19BA5E3600E6F169 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B275F40A19BA5E3600E6F169 /* Main.storyboard */; };
 		B275F40E19BA5E3600E6F169 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B275F40D19BA5E3600E6F169 /* Images.xcassets */; };
-		B275F41A19BA5E3600E6F169 /* Rating_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275F41919BA5E3600E6F169 /* Rating_DemoTests.swift */; };
 		B275F42519BA5E5100E6F169 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B275F42419BA5E5100E6F169 /* FloatRatingView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B275F41419BA5E3600E6F169 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B275F3F919BA5E3600E6F169 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B275F40019BA5E3600E6F169;
-			remoteInfo = "Rating Demo";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B275F40119BA5E3600E6F169 /* Rating Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rating Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,21 +21,11 @@
 		B275F40819BA5E3600E6F169 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B275F40B19BA5E3600E6F169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B275F40D19BA5E3600E6F169 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B275F41319BA5E3600E6F169 /* Rating DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rating DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B275F41819BA5E3600E6F169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B275F41919BA5E3600E6F169 /* Rating_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating_DemoTests.swift; sourceTree = "<group>"; };
 		B275F42419BA5E5100E6F169 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloatRatingView.swift; path = ../../FloatRatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B275F3FE19BA5E3600E6F169 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B275F41019BA5E3600E6F169 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,7 +39,6 @@
 			isa = PBXGroup;
 			children = (
 				B275F40319BA5E3600E6F169 /* Rating Demo */,
-				B275F41619BA5E3600E6F169 /* Rating DemoTests */,
 				B275F40219BA5E3600E6F169 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,7 +47,6 @@
 			isa = PBXGroup;
 			children = (
 				B275F40119BA5E3600E6F169 /* Rating Demo.app */,
-				B275F41319BA5E3600E6F169 /* Rating DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,23 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				B275F40519BA5E3600E6F169 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B275F41619BA5E3600E6F169 /* Rating DemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				B275F41919BA5E3600E6F169 /* Rating_DemoTests.swift */,
-				B275F41719BA5E3600E6F169 /* Supporting Files */,
-			);
-			path = "Rating DemoTests";
-			sourceTree = "<group>";
-		};
-		B275F41719BA5E3600E6F169 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B275F41819BA5E3600E6F169 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -140,39 +100,20 @@
 			productReference = B275F40119BA5E3600E6F169 /* Rating Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B275F41219BA5E3600E6F169 /* Rating DemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B275F42019BA5E3600E6F169 /* Build configuration list for PBXNativeTarget "Rating DemoTests" */;
-			buildPhases = (
-				B275F40F19BA5E3600E6F169 /* Sources */,
-				B275F41019BA5E3600E6F169 /* Frameworks */,
-				B275F41119BA5E3600E6F169 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B275F41519BA5E3600E6F169 /* PBXTargetDependency */,
-			);
-			name = "Rating DemoTests";
-			productName = "Rating DemoTests";
-			productReference = B275F41319BA5E3600E6F169 /* Rating DemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B275F3F919BA5E3600E6F169 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "On The Pursuit";
 				TargetAttributes = {
 					B275F40019BA5E3600E6F169 = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					B275F41219BA5E3600E6F169 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = B275F40019BA5E3600E6F169;
+						LastSwiftMigration = 0900;
 					};
 				};
 			};
@@ -190,7 +131,6 @@
 			projectRoot = "";
 			targets = (
 				B275F40019BA5E3600E6F169 /* Rating Demo */,
-				B275F41219BA5E3600E6F169 /* Rating DemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -202,13 +142,6 @@
 			files = (
 				B275F40C19BA5E3600E6F169 /* Main.storyboard in Resources */,
 				B275F40E19BA5E3600E6F169 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B275F41119BA5E3600E6F169 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,23 +158,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B275F40F19BA5E3600E6F169 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B275F41A19BA5E3600E6F169 /* Rating_DemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B275F41519BA5E3600E6F169 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B275F40019BA5E3600E6F169 /* Rating Demo */;
-			targetProxy = B275F41419BA5E3600E6F169 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B275F40A19BA5E3600E6F169 /* Main.storyboard */ = {
@@ -263,20 +180,30 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -305,13 +232,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -319,6 +254,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -328,6 +264,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -338,9 +275,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Rating Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onthepursuit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -350,43 +290,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Rating Demo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.onthepursuit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		B275F42119BA5E3600E6F169 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Rating DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rating Demo.app/Rating Demo";
-			};
-			name = Debug;
-		};
-		B275F42219BA5E3600E6F169 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Rating DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rating Demo.app/Rating Demo";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -407,15 +316,6 @@
 			buildConfigurations = (
 				B275F41E19BA5E3600E6F169 /* Debug */,
 				B275F41F19BA5E3600E6F169 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B275F42019BA5E3600E6F169 /* Build configuration list for PBXNativeTarget "Rating DemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B275F42119BA5E3600E6F169 /* Debug */,
-				B275F42219BA5E3600E6F169 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
