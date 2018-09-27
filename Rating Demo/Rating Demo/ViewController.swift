@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         /** Note: With the exception of contentMode, type and delegate,
          all properties can be set directly in Interface Builder **/
         floatRatingView.delegate = self
-        floatRatingView.contentMode = UIViewContentMode.scaleAspectFit
+        floatRatingView.contentMode = UIView.ContentMode.scaleAspectFit
         floatRatingView.type = .halfRatings
         
         // Segmented control init

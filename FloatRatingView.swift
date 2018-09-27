@@ -55,7 +55,7 @@ open class FloatRatingView: UIView {
     }
 
     /// Sets the empty and full image view content mode.
-    open var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
+    open var imageContentMode: UIView.ContentMode = UIView.ContentMode.scaleAspectFit
 
     /// Minimum rating.
     @IBInspectable open var minRating: Int  = 0 {
