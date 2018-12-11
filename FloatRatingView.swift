@@ -246,6 +246,17 @@ open class FloatRatingView: UIView {
 
     // MARK: UIView
     
+    open override var intrinsicContentSize: CGSize {
+        guard let prototypeImageView = fullImageViews.first else {
+            return super.intrinsicContentSize
+        }
+        
+        let desiredWidth = prototypeImageView.intrinsicContentSize.width * CGFloat(maxRating)
+        let desiredSize = CGSize(width: desiredWidth, height: prototypeImageView.intrinsicContentSize.height)
+        
+        return desiredSize
+	}
+    
     // Override to calculate ImageView frames
     override open func layoutSubviews() {
         super.layoutSubviews()
