@@ -55,10 +55,10 @@ open class FloatRatingView: UIView {
     }
 
     /// Sets the empty and full image view content mode.
-    open var imageContentMode: UIViewContentMode = UIViewContentMode.scaleAspectFit
+    open var imageContentMode: UIView.ContentMode = UIView.ContentMode.scaleAspectFit
 
     /// Minimum rating.
-    @IBInspectable open var minRating: Int  = 0 {
+    @IBInspectable open var minRating: Float  = 0 {
         didSet {
             // Update current rating if needed
             if rating < Double(minRating) {
@@ -69,7 +69,7 @@ open class FloatRatingView: UIView {
     }
 
     /// Max rating value.
-    @IBInspectable open var maxRating: Int = 5 {
+    @IBInspectable open var maxRating: Float = 5 {
         didSet {
             if maxRating != oldValue {
                 removeImageViews()
@@ -138,7 +138,7 @@ open class FloatRatingView: UIView {
         }
 
         // Add new image views
-        for _ in 0..<maxRating {
+        for _ in (0)..<Int(maxRating) {
             let emptyImageView = UIImageView()
             emptyImageView.contentMode = imageContentMode
             emptyImageView.image = emptyImage
@@ -214,7 +214,7 @@ open class FloatRatingView: UIView {
         let touchLocation = touch.location(in: self)
         var newRating: Double = 0
         for i in stride(from: (maxRating-1), through: 0, by: -1) {
-            let imageView = emptyImageViews[i]
+            let imageView = emptyImageViews[Int(i)]
             guard touchLocation.x > imageView.frame.origin.x else {
                 continue
             }
@@ -261,7 +261,7 @@ open class FloatRatingView: UIView {
         let imageXOffset = (frame.size.width - (imageViewSize.width * CGFloat(emptyImageViews.count))) /
                             CGFloat((emptyImageViews.count - 1))
         
-        for i in 0..<maxRating {
+        for i in (0)..<Int(maxRating) {
             let imageFrame = CGRect(x: i == 0 ? 0 : CGFloat(i)*(imageXOffset+imageViewSize.width), y: 0, width: imageViewSize.width, height: imageViewSize.height)
             
             var imageView = emptyImageViews[i]
