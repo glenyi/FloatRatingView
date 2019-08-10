@@ -29,7 +29,7 @@ For Swift 2.3 projects just add the following to your podfile:
 pod 'FloatRatingView', '~> 1.0.3'
 ```
 
-For Swift 4.0 projects:
+For Swift 5.0 projects:
 ```
 pod 'FloatRatingView', '~> 4'
 ```
