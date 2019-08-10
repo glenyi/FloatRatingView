@@ -13,7 +13,7 @@ Usage
 
 Initialize from a nib/xib or programmatically. Set the empty and full image, then you're pretty much good to go! Check out the demo app to see how it can be used.
 
-Release v2.0 is updated for Swift 3.0 while v1.0.3 is on Swift 2.3.
+Release v2.0 is updated for Swift 4.2 while v1.0.3 is on Swift 2.3.
 
 Usage in an Objective-C Project
 -------------------------------
