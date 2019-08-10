@@ -10,5 +10,5 @@ Pod::Spec.new do |spec|
     spec.source_files           = 'FloatRatingView.swift'
     spec.platform               = :ios, '8.0'
     spec.requires_arc           = true
-    spec.pod_target_xcconfig    = { 'SWIFT_VERSION' => '5.0' }
+    spec.swift_version          = '5.0'
 end
