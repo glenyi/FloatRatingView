@@ -55,10 +55,10 @@ open class FloatRatingView: UIView {
     }
 
     /// Sets the empty and full image view content mode.
-    open var imageContentMode: UIView.ContentMode = UIView.ContentMode.scaleAspectFit
+    open var imageContentMode: UIView.ContentMode = .scaleAspectFit
 
     /// Minimum rating.
-    @IBInspectable open var minRating: Int  = 0 {
+    @IBInspectable open var minRating: Int = 0 {
         didSet {
             // Update current rating if needed
             if rating < Double(minRating) {
@@ -83,7 +83,7 @@ open class FloatRatingView: UIView {
     }
 
     /// Minimum image size.
-    @IBInspectable open var minImageSize: CGSize = CGSize(width: 5.0, height: 5.0)
+    @IBInspectable open var minImageSize = CGSize(width: 5.0, height: 5.0)
 
     /// Set the current rating.
     @IBInspectable open var rating: Double = 0 {
@@ -95,7 +95,7 @@ open class FloatRatingView: UIView {
     }
 
     /// Sets whether or not the rating view can be changed by panning.
-    @IBInspectable open var editable: Bool = true
+    @IBInspectable open var editable = true
 
     // MARK: Type
 
