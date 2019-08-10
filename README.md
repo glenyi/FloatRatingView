@@ -13,7 +13,7 @@ Usage
 
 Initialize from a nib/xib or programmatically. Set the empty and full image, then you're pretty much good to go! Check out the demo app to see how it can be used.
 
-Release v2.0 is updated for Swift 4.2 while v1.0.3 is on Swift 2.3.
+Release v4.0 is updated for Swift 5.0 while v1.0.3 is on Swift 2.3.
 
 Usage in an Objective-C Project
 -------------------------------
@@ -29,9 +29,9 @@ For Swift 2.3 projects just add the following to your podfile:
 pod 'FloatRatingView', '~> 1.0.3'
 ```
 
-For Swift 3.0 projects:
+For Swift 4.0 projects:
 ```
-pod 'FloatRatingView', '~> 2.0.0'
+pod 'FloatRatingView', '~> 4'
 ```
 
 How it works
