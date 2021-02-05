@@ -185,6 +185,8 @@ open class FloatRatingView: UIView {
                 imageView.isHidden = true
             }
         }
+        
+        flipViewIfNeeded()
     }
     
     // Calculates the ideal ImageView size in a given CGSize
@@ -299,5 +301,31 @@ open class FloatRatingView: UIView {
     override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Update delegate
         delegate?.floatRatingView?(self, didUpdate: rating)
+    }
+}
+
+// MARK: - StarRatingView+RTLSupport
+public extension FloatRatingView {
+    /// Flip the View to support Right to Left Languages based on the view semantic
+    func flipViewIfNeeded() {
+        var direction: UIUserInterfaceLayoutDirection
+        if #available(iOS 10.0, *) {
+            direction = self.effectiveUserInterfaceLayoutDirection
+        } else { // Fallback on earlier versions
+            if #available(iOS 9.0, *) {
+                // The view is shown in right-to-left mode right now.
+                direction = UIView.userInterfaceLayoutDirection(for: self.semanticContentAttribute)
+            } else { // Fallback on earlier versions
+                direction = UIApplication.shared.userInterfaceLayoutDirection
+            }
+        }
+        
+        if case .rightToLeft = direction {
+            flip()
+        }
+    }
+    
+    private func flip() {
+        self.transform = CGAffineTransform(scaleX: -1.0, y: 1.0);
     }
 }
