@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "FloatRatingView",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v11)
     ],
@@ -14,6 +15,7 @@ let package = Package(
     targets: [
         .target(
             name: "FloatRatingView",
+            path: ".",
             sources: ["FloatRatingView.swift"]
         )
     ]
