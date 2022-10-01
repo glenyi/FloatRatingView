@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.social_media_url       = 'https://twitter.com/glenyi'
     spec.source                 = { :git => 'https://github.com/glenyi/FloatRatingView.git', :tag => "#{spec.version}" }
     spec.source_files           = 'FloatRatingView.swift'
-    spec.platform               = :ios, '8.0'
+    spec.platforms              = { :ios => '8.0', :tvos => '11.0' }
     spec.requires_arc           = true
     spec.swift_version          = '5.0'
 end

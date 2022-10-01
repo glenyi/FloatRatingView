@@ -5,7 +5,7 @@ let package = Package(
     name: "FloatRatingView",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v11)
+        .iOS(.v11), .tvOS(.v11),
     ],
     products: [
         .library(
