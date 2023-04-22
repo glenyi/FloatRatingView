@@ -167,6 +167,13 @@ open class FloatRatingView: UIView {
 
     // Refresh hides or shows full images
     private func refresh() {
+        // Flip the View to support Right to Left Languages based on the view semantic
+        if #available(iOS 9.0, *) {
+            if ( self.semanticContentAttribute == .forceRightToLeft ){
+                self.transform = CGAffineTransform(scaleX: -1.0, y: 1.0);
+            }
+        }
+        
         for i in 0..<fullImageViews.count {
             let imageView = fullImageViews[i]
 
